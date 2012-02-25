@@ -435,8 +435,14 @@ class Deploy(object):
         assert name
         release_dir = Deploy.get_release_dir(name)
         django_dir = os.path.join(release_dir, PROJECT_NAME)
+
         # If you run a preprocessor, like JS/CSS compilation, do that here, e.g. :
         #run(os.path.join(PROJECT_DIR, 'bin', 'processor') + ' ' + release_dir)
+            
+        if os.path.exists('localsettings.py'):
+            print 'Found localsettings.py, uploading'
+            put('localsettings.py', PROJECT_DIR)
+
         print 'Setting up Django settings symlinks'
         with cd(django_dir):
             run('ln -nfs %s .' % os.path.join(PROJECT_DIR, 'stagesettings.py'))
