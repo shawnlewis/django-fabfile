@@ -13,28 +13,30 @@ from fabric.api import *
 from fabric.contrib.files import append, exists, comment, contains
 from fabric.contrib.files import upload_template as orig_upload_template
 
+from fab_settings import *
+
 # Stuff you're likely to change
-PROJECT_NAME = 'project'
-DOMAIN = 'project.com'
-GIT_CLONE_PATH = 'reverie/%s.git' % PROJECT_NAME
-PRODUCTION_USERNAME = 'root'
-PRODUCTION_HOST = DOMAIN # Change this to an IP if your DNS isn't resolving yet
-ADMIN_EMAIL = 'andrewbadr+django_fabfile@gmail.com'
+#PROJECT_NAME = 'project'
+#DOMAIN = 'project.com'
+#GIT_CLONE_PATH = 'reverie/%s.git' % PROJECT_NAME
+#PRODUCTION_USERNAME = 'root'
+#PRODUCTION_HOST = DOMAIN # Change this to an IP if your DNS isn't resolving yet
+#ADMIN_EMAIL = 'andrewbadr+django_fabfile@gmail.com'
 
 # Probably don't change:
-DJANGO_PORT = 81
-BRANCH = 'master'
-SERVER_GROUP = 'app'
-ROLES = ['nginx', 'django', 'database', 'smtp']
-PROJECT_DIR = '/project/%s' % PROJECT_NAME # Not templatized in config files
-VIRTUALENV = '/envs/%s' % PROJECT_NAME # Not templatized in config files
-DB_PASS = 'foo' # Should not contain quotes; coupled w/settings.py # IGNORED, postgres is now configured to trust local connections
-GIT_CLONE_USERNAME = 'git'
-GIT_CLONE_HOST = 'github.com'
-GIT_CLONE_PSEUDOHOST = PROJECT_NAME # Used to specify site-specific behavior for SSH if multiple projects are hosted on e.g. github.com
-PG_VERSION = (8, 4)
-PYTHON_VERSION = (2,6)
-
+#DJANGO_PORT = 81
+#BRANCH = 'master'
+#SERVER_GROUP = 'app'
+#ROLES = ['nginx', 'django', 'database', 'smtp']
+#PROJECT_DIR = '/project/%s' % PROJECT_NAME # Not templatized in config files
+#VIRTUALENV = '/envs/%s' % PROJECT_NAME # Not templatized in config files
+#DB_PASS = 'foo' # Should not contain quotes; coupled w/settings.py # IGNORED, postgres is now configured to trust local connections
+#GIT_CLONE_USERNAME = 'git'
+#GIT_CLONE_HOST = 'github.com'
+#GIT_CLONE_PSEUDOHOST = PROJECT_NAME # Used to specify site-specific behavior for SSH if multiple projects are hosted on e.g. github.com
+#PG_VERSION = (8, 4)
+#PYTHON_VERSION = (2,6)
+#
 #
 # Fabric Hacks
 #
