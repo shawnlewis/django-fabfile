@@ -84,6 +84,7 @@ def home_dir(*args):
 
 def stage_dev():
     env.user = os.getenv('USER')
+    env.stage_name_constant = 'STAGE_NAME_DEV'
     env.stage = {
         'hostname': 'dev.' + DOMAIN
     }
@@ -91,6 +92,7 @@ def stage_dev():
 
 def stage_staging():
     env.user = PRODUCTION_USERNAME
+    env.stage_name_constant = 'STAGE_NAME_STAGING'
     env.stage = {
         'hostname': 'staging.' + DOMAIN
     }
@@ -98,6 +100,7 @@ def stage_staging():
 
 def stage_production():
     env.user = PRODUCTION_USERNAME
+    env.stage_name_constant = 'STAGE_NAME_PROD'
     env.stage = {
         'hostname': 'www.' + DOMAIN
     }
@@ -321,6 +324,8 @@ def configure_django():
     upload_template('./server/django/stagesettings.py', os.path.join(PROJECT_DIR, 'stagesettings.py'), use_sudo=True, 
         use_jinja=True, context={
         'database_host': '127.0.0.1', # Change this on swtich to a multi-server setup
+        'STAGE_NAME_CONSTANT': env.stage_name_constant,
+
     })
     if not exists('/etc/apache2/sites-enabled/%s' % PROJECT_NAME):
         sudo('ln -s /etc/apache2/sites-available/%s /etc/apache2/sites-enabled/%s' % (PROJECT_NAME, PROJECT_NAME))
